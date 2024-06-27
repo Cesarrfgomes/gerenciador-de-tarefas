@@ -2,6 +2,16 @@
 const props = defineProps({
   task: Object,
 });
+
+const emit = defineEmits(["handleDelete", "handleEdit"]);
+
+const deleteTask = () => {
+  emit("handleDelete", props.task.id);
+};
+
+const editTask = () => {
+  emit("handleEdit", props.task.id);
+};
 </script>
 
 <template>
@@ -9,8 +19,8 @@ const props = defineProps({
     <div class="content-task">
       <span>{{ props.task.title }}</span>
       <div class="actions">
-        <img src="../assets/edit.svg" alt="edit" />
-        <img src="../assets/delete.svg" alt="delete" />
+        <img src="../assets/edit.svg" alt="edit" @click="editTask()" />
+        <img src="../assets/delete.svg" alt="delete" @click="deleteTask()" />
       </div>
     </div>
     <hr />
